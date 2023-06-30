@@ -1,45 +1,13 @@
 import { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  SafeAreaView,
-  FlatList,
-  Modal,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, Button, SafeAreaView, FlatList, Modal } from "react-native";
 
+import { TaskInput, TaskItem } from "./components";
 import { styles } from "./styles";
 
 export default function App() {
-  const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
-  const [borderColor, setBorderColor] = useState("#C5C9E7");
-
-  const handleFocus = () => {
-    setBorderColor("#424D9E");
-  };
-  const handleBlur = () => {
-    setBorderColor("#C5C9E7");
-  };
-
-  const handleChange = (text) => {
-    setTask(text);
-  };
-
-  const handleCreate = () => {
-    setTasks([
-      ...tasks,
-      {
-        id: Date.now().toString(),
-        value: task,
-      },
-    ]);
-    setTask("");
-  };
 
   const handleModal = (item) => {
     setIsVisible(true);
@@ -51,36 +19,12 @@ export default function App() {
     setIsVisible(false);
   };
 
-  const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.item} onPress={() => handleModal(item)}>
-      <Text style={styles.itemText}>{item.value}</Text>
-    </TouchableOpacity>
-  );
+  const renderItem = ({ item }) => <TaskItem item={item} handleModal={handleModal} />;
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={[styles.input, { borderColor }]}
-            placeholder="add new task"
-            autoCapitalize="none"
-            autoCorrect={false}
-            cursorColor="#424D9E"
-            selectionColor="#D4D7ED"
-            placeholderTextColor="#C5C9E7"
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onChangeText={handleChange}
-            value={task}
-          />
-          <Button
-            color="#424D9E"
-            title="create"
-            onPress={handleCreate}
-            disabled={task.length === 0}
-          />
-        </View>
+        <TaskInput tasks={tasks} setTasks={setTasks} />
         <View style={styles.listContainer}>
           <FlatList
             data={tasks}
