@@ -9,14 +9,6 @@ export const styles = StyleSheet.create({
     marginHorizontal: 20,
     paddingTop: StatusBar.currentHeight || 0,
   },
-  listContainer: {
-    marginTop: 25,
-    flex: 1,
-  },
-  itemList: {
-    gap: 15,
-    paddingBottom: 20,
-  },
   modalContainer: {
     justifyContent: "center",
     alignItems: "center",

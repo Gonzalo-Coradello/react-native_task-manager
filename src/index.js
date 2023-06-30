@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { View, Text, Button, SafeAreaView, FlatList, Modal } from "react-native";
+import { View, Text, Button, SafeAreaView, Modal } from "react-native";
 
-import { TaskInput, TaskItem } from "./components";
+import { TaskInput, TaskItem, TaskList } from "./components";
 import { styles } from "./styles";
 
 export default function App() {
@@ -25,15 +25,7 @@ export default function App() {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <TaskInput tasks={tasks} setTasks={setTasks} />
-        <View style={styles.listContainer}>
-          <FlatList
-            data={tasks}
-            renderItem={renderItem}
-            contentContainerStyle={styles.itemList}
-            alwaysBounceVertical={false}
-            keyExtractor={(item) => item.id}
-          />
-        </View>
+        <TaskList tasks={tasks} renderItem={renderItem} />
         <Modal visible={isVisible} animationType="slide">
           <View style={styles.modalContainer}>
             <Text style={styles.modalTitle}>Task details</Text>
