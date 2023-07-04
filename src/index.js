@@ -19,7 +19,21 @@ export default function App() {
     setIsVisible(false);
   };
 
-  const renderItem = ({ item }) => <TaskItem item={item} handleModal={handleModal} />;
+  const toggleComplete = (item) => {
+    const updatedTask = {
+      ...item,
+      completed: !item.completed,
+    };
+    setTasks((prev) =>
+      prev
+        .map((task) => (task.id === item.id ? updatedTask : task))
+        .sort((a, b) => a.completed - b.completed)
+    );
+  };
+
+  const renderItem = ({ item }) => (
+    <TaskItem item={item} handleModal={handleModal} handleComplete={toggleComplete} />
+  );
 
   return (
     <SafeAreaView style={styles.safeArea}>

@@ -20,13 +20,23 @@ export const styles = StyleSheet.create({
     elevation: 3,
     marginBottom: 10,
   },
+  completed: {
+    backgroundColor: "#6a6b76",
+  },
   itemText: {
     fontSize: 15,
     fontWeight: "bold",
     color: "#212121",
   },
+  completedText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "#212121",
+    textDecorationLine: "line-through",
+  },
   icon: {
     color: "red",
     fontSize: 16,
+    paddingHorizontal: 2,
   },
 });

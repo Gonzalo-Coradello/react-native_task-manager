@@ -25,6 +25,7 @@ const TaskInput = ({ setTasks, tasks }) => {
       {
         id: Date.now().toString(),
         value: task,
+        completed: false,
       },
     ]);
     setTask("");
