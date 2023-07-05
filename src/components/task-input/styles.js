@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginTop: 15,
   },
   input: {
     borderWidth: 1,
